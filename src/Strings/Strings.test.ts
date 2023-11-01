@@ -67,7 +67,7 @@ describe("Strings", () => {
       }
     });
     
-    it('throws an error after X attempts to generate a non-blacklisted string', () => {
+    it("throws an error after X attempts to generate a non-blacklisted string", () => {
       jest.spyOn(Strings, "generateRandomString" as any).mockReturnValue("abcde");
       const blacklistedStrings = [ "abcde", "defgh" ];
       expect(() => {
