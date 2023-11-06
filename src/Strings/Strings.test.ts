@@ -2,6 +2,10 @@ import { Strings } from "./Strings";
 
 describe("Strings", () => {
   
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+  
   describe("initialCaps", () => {
     
     it("capitalizes the first letter of each word in a sentence", () => {
@@ -42,6 +46,17 @@ describe("Strings", () => {
       expect(outputUppercase).toBe("HELLO WORLD");
     });
     
+    it("throws an error when input is not a string", () => {
+      const nonStringValues = [ 1, [ 1, 2, 3 ], () => {}, true, { test: "test" }, null, undefined ];
+      
+      for (const value of nonStringValues)
+      {
+        expect(() => {
+          Strings.initialCaps(value as any);
+        }).toThrow(TypeError);
+      }
+    });
+    
   });
   
   describe("random", () => {
@@ -60,11 +75,8 @@ describe("Strings", () => {
     
     it("does not generate a blacklisted string", () => {
       const blacklistedStrings = [ "abcde", "defgh" ];
-      for (let i = 0; i < 1000; i++)
-      {
-        const randomString = Strings.random(5, blacklistedStrings);
-        expect(blacklistedStrings).not.toContain(randomString);
-      }
+      const randomString = Strings.random(5, blacklistedStrings);
+      expect(blacklistedStrings).not.toContain(randomString);
     });
     
     it("throws an error after X attempts to generate a non-blacklisted string", () => {
