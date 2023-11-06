@@ -4,7 +4,7 @@ import { ValidatorOptions } from "../Type/ValidatorOptions";
 
 export abstract class AbstractValidator implements ValidatorInterface
 {
-  private readonly options: ValidatorOptions;
+  protected readonly options: ValidatorOptions;
   
   public constructor(options?: ValidatorOptions)
   {
