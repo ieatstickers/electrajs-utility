@@ -3,6 +3,10 @@ import { Numbers } from "../Numbers/Numbers";
 
 describe("Arrays", () => {
   
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+  
   describe("clone", () => {
     
     it("clones an array of numbers", () => {
@@ -102,16 +106,17 @@ describe("Arrays", () => {
       expect(result).not.toBe(arr);
     });
     
-    it("throws an error when input is undefined", () => {
-      expect(() => {
-        Arrays.clone(undefined);
-      }).toThrow(TypeError);
-    });
+    it("throws an error when input is not an array", () => {
+      
+      const nonArrayValues = [ 1, "a", { a: 1, b: 2 }, () => {}, null, undefined, true ];
+      
+      for (const value of nonArrayValues)
+      {
+        expect(() => {
+          Arrays.clone(value as any);
+        }).toThrow(TypeError);
+      }
     
-    it("throws an error when input is null", () => {
-      expect(() => {
-        Arrays.clone(null);
-      }).toThrow(TypeError);
     });
     
   });
@@ -139,16 +144,17 @@ describe("Arrays", () => {
       expect(result).toEqual(9);
     });
     
-    it("throws an error when input is undefined", () => {
-      expect(() => {
-        Arrays.randomItem(undefined);
-      }).toThrow(TypeError);
-    });
-    
-    it("throws an error when input is null", () => {
-      expect(() => {
-        Arrays.randomItem(null);
-      }).toThrow(TypeError);
+    it("throws an error when input is not an array", () => {
+      
+      const nonArrayValues = [ 1, "a", { a: 1, b: 2 }, () => {}, null, undefined, true ];
+      
+      for (const value of nonArrayValues)
+      {
+        expect(() => {
+          Arrays.randomItem(value as any);
+        }).toThrow(TypeError);
+      }
+      
     });
     
     it("throws an error when input is an empty array", () => {
