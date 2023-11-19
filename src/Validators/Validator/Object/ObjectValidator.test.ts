@@ -28,7 +28,7 @@ describe("ObjectValidator", () => {
         {
           value: 123,
           valid: false,
-          message: "Value must be an object - number provided"
+          message: "Value must be an object - integer provided"
         },
         {
           value: "test",

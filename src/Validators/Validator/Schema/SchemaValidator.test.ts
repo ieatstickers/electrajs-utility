@@ -38,10 +38,10 @@ describe("SchemaValidator", () => {
           valid: false,
           message: "Value is required - undefined provided"
         },
-        number: {
+        integer: {
           value: 123,
           valid: false,
-          message: "Value must be of type object - number provided"
+          message: "Value must be of type object - integer provided"
         },
         string: {
           value: "test",
@@ -152,10 +152,10 @@ describe("SchemaValidator", () => {
           valid: false,
           message: "Value is required - undefined provided"
         },
-        number: {
+        integer: {
           value: 123,
           valid: false,
-          message: "Value must be of type object - number provided"
+          message: "Value must be of type object - integer provided"
         },
         string: {
           value: "test",

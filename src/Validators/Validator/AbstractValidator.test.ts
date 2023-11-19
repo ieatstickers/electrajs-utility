@@ -36,7 +36,7 @@ describe("AbstractValidator", () => {
       "array": [1, 2, 3],
       "undefined": undefined,
       "string": "test",
-      "number": 123,
+      "integer": 123,
       "boolean": false,
       "function": () => {},
       "object": { test: "test" }

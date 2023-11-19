@@ -12,6 +12,7 @@ import { AnyValidator } from "./Validator/Any/AnyValidator";
 import { MinLengthValidator } from "./Validator/MinLength/MinLengthValidator";
 import { MaxLengthValidator } from "./Validator/MaxLength/MaxLengthValidator";
 import { EnumValueValidator } from "./Validator/EnumValue/EnumValueValidator";
+import { IntegerValidator } from "./Validator/Integer/IntegerValidator";
 
 export class Validators
 {
@@ -38,6 +39,11 @@ export class Validators
   public static enumValue(enumClass: { [key: string]: string | number }, options?: ValidatorOptions): ValidatorInterface
   {
     return new EnumValueValidator(enumClass, options);
+  }
+  
+  public static integer(options?: ValidatorOptions): ValidatorInterface
+  {
+    return new IntegerValidator(options);
   }
 
   public static maxLength(maxLength: number, options?: ValidatorOptions): ValidatorInterface

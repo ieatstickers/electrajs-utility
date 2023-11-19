@@ -27,7 +27,7 @@ describe("BooleanValidator", () => {
         {
           value: 123,
           valid: false,
-          message: "Value must be a boolean - number provided"
+          message: "Value must be a boolean - integer provided"
         },
         {
           value: "test",

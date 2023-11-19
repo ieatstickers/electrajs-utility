@@ -26,7 +26,7 @@ describe("StringValidator", () => {
         {
           value: 123,
           valid: false,
-          message: "Value must be a string - number provided"
+          message: "Value must be a string - integer provided"
         },
         {
           value: true,

@@ -36,7 +36,7 @@ describe("MaxLengthValidator", () => {
     
     it("returns correct response when validating a value of invalid type", () => {
       const invalidValues = {
-        number: 123,
+        integer: 123,
         boolean: false,
         function: () => console.log("test"),
         object: { test: true },
@@ -95,10 +95,10 @@ describe("MaxLengthValidator", () => {
           valid: false,
           message: "Value is required - undefined provided"
         },
-        number: {
+        integer: {
           value: 123,
           valid: false,
-          message: "Value must be a string or an array - number provided"
+          message: "Value must be a string or an array - integer provided"
         },
         boolean: {
           value: false,

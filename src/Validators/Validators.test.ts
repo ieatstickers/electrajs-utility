@@ -10,6 +10,7 @@ import { AnyValidator } from "./Validator/Any/AnyValidator";
 import { MaxLengthValidator } from "./Validator/MaxLength/MaxLengthValidator";
 import { MinLengthValidator } from "./Validator/MinLength/MinLengthValidator";
 import { EnumValueValidator } from "./Validator/EnumValue/EnumValueValidator";
+import { IntegerValidator } from "./Validator/Integer/IntegerValidator";
 
 describe("Validators", () => {
   
@@ -56,6 +57,14 @@ describe("Validators", () => {
       }
       
       expect(Validators.enumValue(TestEnum)).toBeInstanceOf(EnumValueValidator);
+    });
+    
+  });
+  
+  describe("integer", () => {
+    
+    it("returns an IntegerValidator instance ", () => {
+      expect(Validators.integer()).toBeInstanceOf(IntegerValidator);
     });
     
   });

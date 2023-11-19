@@ -26,6 +26,7 @@ export abstract class AbstractValidator implements ValidatorInterface
   {
     if (value === null) return "null";
     else if (Array.isArray(value)) return "array";
+    else if (Number.isInteger(value)) return "integer";
     return typeof value;
   }
   

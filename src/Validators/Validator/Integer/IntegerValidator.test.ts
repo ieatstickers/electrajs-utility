@@ -1,14 +1,13 @@
-import { ArrayValidator } from "./ArrayValidator";
+import { IntegerValidator } from "./IntegerValidator";
 
-describe("ArrayValidator", () => {
+describe("IntegerValidator", () => {
   
   describe("validate", () => {
     
-    it("returns the correct response when validating an array value", () => {
-      const validator = new ArrayValidator();
-      const testValue = [ 1, 2, 3 ];
-      const { value, valid, message } = validator.validate(testValue);
-      expect(value).toBe(testValue);
+    it("returns the correct response when validating a number value", () => {
+      const validator = new IntegerValidator();
+      const { value: validatorValue, valid, message } = validator.validate(123);
+      expect(validatorValue).toBe(123);
       expect(valid).toBe(true);
       expect(message).toBeNull();
     });
@@ -26,35 +25,35 @@ describe("ArrayValidator", () => {
           message: "Value is required - undefined provided"
         },
         {
-          value: 123,
+          value: false,
           valid: false,
-          message: "Value must be an array - integer provided"
+          message: "Value must be an integer - boolean provided"
         },
         {
           value: "test",
           valid: false,
-          message: "Value must be an array - string provided"
+          message: "Value must be an integer - string provided"
         },
         {
-          value: false,
+          value: [],
           valid: false,
-          message: "Value must be an array - boolean provided"
+          message: "Value must be an integer - array provided"
         },
         {
           value: {},
           valid: false,
-          message: "Value must be an array - object provided"
+          message: "Value must be an integer - object provided"
         },
         {
           value: () => { console.log("test"); },
           valid: false,
-          message: "Value must be an array - function provided"
+          message: "Value must be an integer - function provided"
         }
       ]
       
       for (const { value, valid, message } of values)
       {
-        const validator = new ArrayValidator();
+        const validator = new IntegerValidator();
         const { value: validatorValue, valid: isValid, message: validatorMessage } = validator.validate(value);
         expect(validatorValue).toBe(value);
         expect(isValid).toBe(valid);
@@ -70,7 +69,7 @@ describe("ArrayValidator", () => {
       
       for (const [key, value] of Object.entries(values))
       {
-        const validator = new ArrayValidator({ optional: false });
+        const validator = new IntegerValidator({ optional: false });
         const { value: validatorValue, valid: isValid, message: validatorMessage } = validator.validate(value);
         expect(validatorValue).toBe(value);
         expect(isValid).toBe(false);
@@ -83,7 +82,7 @@ describe("ArrayValidator", () => {
       
       for (const value of values)
       {
-        const validator = new ArrayValidator({ optional: true });
+        const validator = new IntegerValidator({ optional: true });
         const { value: validatorValue, valid: isValid, message: validatorMessage } = validator.validate(value);
         expect(validatorValue).toBe(value);
         expect(isValid).toBe(true);
@@ -95,17 +94,17 @@ describe("ArrayValidator", () => {
       const values = [
         null,
         undefined,
-        123,
-        "test",
         false,
+        "test",
+        [],
         {},
         () => { console.log("test"); }
       ];
       
       for (const value of values)
       {
-        const { message } = (new ArrayValidator()).validate(value);
-        const validator = new ArrayValidator({ throwErrors: true });
+        const { message } = (new IntegerValidator()).validate(value);
+        const validator = new IntegerValidator({ throwErrors: true });
         const expectation = expect(() => validator.validate(value));
         expectation.toThrow(TypeError);
         expectation.toThrow(message);
