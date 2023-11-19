@@ -2,6 +2,7 @@ export declare class Types {
     static isString(value: any, optional?: boolean): boolean;
     static isBoolean(value: any, optional?: boolean): boolean;
     static isNumber(value: any, optional?: boolean): boolean;
+    static isInteger(value: any, optional?: boolean): boolean;
     static isArray(value: any, optional?: boolean): boolean;
     static isObject(value: any, optional?: boolean): boolean;
     static isFunction(value: any, optional?: boolean): boolean;

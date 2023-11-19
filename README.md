@@ -50,6 +50,7 @@ Table of contents:
   - [isString](#typesisstring)
   - [isBoolean](#typesisboolean)
   - [isNumber](#typesisnumber)
+  - [isInteger](#typesisinteger)
   - [isArray](#typesisarray)
   - [isObject](#typesisobject)
   - [isFunction](#typesisfunction)
@@ -374,6 +375,26 @@ import { Types } from '@electra/utility';
 
 const isNumber = Types.isNumber(123);
 // isNumber = true
+```
+
+### Types.isInteger
+
+Check if a value is an integer.
+
+#### Parameters
+
+- `value: any`: The value to check.
+- `optional: boolean`: Whether the value can be null or undefined (default: `false`).
+
+#### Returns
+
+- `boolean`: `true` if the value is an integer, `false` otherwise.
+
+```typescript
+import { Types } from '@electra/utility';
+
+const isInteger = Types.isInteger(123);
+// isInteger = true
 ```
 
 ### Types.isArray

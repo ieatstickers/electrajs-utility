@@ -16,6 +16,11 @@ export class Types
     return typeof value === "number" || (optional && !this.isSet(value));
   }
 
+  public static isInteger(value: any, optional: boolean = false): boolean
+  {
+    return Number.isInteger(value) || (optional && !this.isSet(value));
+  }
+
   public static isArray(value: any, optional: boolean = false): boolean
   {
     return Array.isArray(value) || (optional && !this.isSet(value));

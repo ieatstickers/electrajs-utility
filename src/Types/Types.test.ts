@@ -112,6 +112,44 @@ describe("Types", () => {
     
   });
   
+  describe("isInteger", () => {
+    
+    it("returns true when input is an integer and optional flag is false", () => {
+      expect(Types.isInteger(0)).toBe(true);
+      expect(Types.isInteger(1)).toBe(true);
+      expect(Types.isInteger(-123)).toBe(true);
+    });
+    
+    it("returns false when input is a non-integer and optional flag is false", () => {
+      const nonNumberValues = [ 0.4, 0.8, 34.45, true, false, "string", [ 1, 2, 3 ], {}, () => {}, null, undefined ];
+      
+      for (const value of nonNumberValues)
+      {
+        expect(Types.isInteger(value)).toBe(false);
+      }
+    });
+    
+    it("returns false when input is a non-integer and optional flag is true", () => {
+      const nonNumberValues = [ 0.4, 0.8, 34.45, true, false, "test", [ 1, 2, 3 ], {}, () => {} ];
+      
+      for (const value of nonNumberValues)
+      {
+        expect(Types.isInteger(value, true)).toBe(false);
+      }
+    });
+    
+    it("returns true when input is null or undefined and optional flag is true", () => {
+      expect(Types.isInteger(null, true)).toBe(true);
+      expect(Types.isInteger(undefined, true)).toBe(true);
+    });
+    
+    it("returns false when input is null or undefined and optional flag is false", () => {
+      expect(Types.isInteger(null)).toBe(false);
+      expect(Types.isInteger(undefined)).toBe(false);
+    });
+    
+  });
+  
   describe("isArray", () => {
     
     it("returns true when input is an array and optional flag is false", () => {
