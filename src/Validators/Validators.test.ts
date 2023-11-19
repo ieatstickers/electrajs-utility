@@ -11,6 +11,7 @@ import { MaxLengthValidator } from "./Validator/MaxLength/MaxLengthValidator";
 import { MinLengthValidator } from "./Validator/MinLength/MinLengthValidator";
 import { EnumValueValidator } from "./Validator/EnumValue/EnumValueValidator";
 import { IntegerValidator } from "./Validator/Integer/IntegerValidator";
+import { RegexValidator } from "./Validator/Regex/RegexValidator";
 
 describe("Validators", () => {
   
@@ -97,6 +98,14 @@ describe("Validators", () => {
     
     it("returns an ObjectValidator instance", () => {
       expect(Validators.object()).toBeInstanceOf(ObjectValidator);
+    });
+    
+  });
+  
+  describe("regex", () => {
+    
+    it("returns an RegexValidator instance", () => {
+      expect(Validators.regex(/test/, 'test')).toBeInstanceOf(RegexValidator);
     });
     
   });

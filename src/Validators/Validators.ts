@@ -13,6 +13,7 @@ import { MinLengthValidator } from "./Validator/MinLength/MinLengthValidator";
 import { MaxLengthValidator } from "./Validator/MaxLength/MaxLengthValidator";
 import { EnumValueValidator } from "./Validator/EnumValue/EnumValueValidator";
 import { IntegerValidator } from "./Validator/Integer/IntegerValidator";
+import { RegexValidator } from "./Validator/Regex/RegexValidator";
 
 export class Validators
 {
@@ -64,6 +65,11 @@ export class Validators
   public static object(options?: ValidatorOptions): ValidatorInterface
   {
     return new ObjectValidator(options);
+  }
+
+  public static regex(pattern: RegExp, expectedFormat: string, options?: ValidatorOptions): ValidatorInterface
+  {
+    return new RegexValidator(pattern, expectedFormat, options);
   }
 
   public static schema(schema: Schema, options?: ValidatorOptions): ValidatorInterface
