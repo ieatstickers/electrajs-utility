@@ -7,3 +7,4 @@ export { Promises } from "./src/Promises/Promises";
 export { Strings } from "./src/Strings/Strings";
 export { Types } from "./src/Types/Types";
 export { Validators } from "./src/Validators/Validators";
+export { Schema } from "./src/Validators/Validator/Schema/Type/Schema";
