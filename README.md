@@ -70,6 +70,7 @@ Table of contents:
     - [minLength](#validatorsminlength)
     - [number](#validatorsnumber)
     - [object](#validatorsobject)
+    - [regex](#validatorsregex)
     - [schema](#validatorsschema)
     - [string](#validatorsstring)
 
@@ -930,6 +931,45 @@ const validator = Validators.object();
 const { value, valid, message } = validator.validate({ a: 1, b: 2 });
 
 // value = { a: 1, b: 2 }
+// valid = true
+// message = null
+```
+
+### Validators.regex
+
+Validate that a value matches a regex pattern.
+
+#### Parameters
+
+- `pattern: RegExp`: The regex pattern to match against.
+- `expectedFormat: string`: The expected format of the value (used in the validation message).
+- `options?: ValidatorOptions`: An object containing options for the validation process.
+  - `optional?: boolean`: If set to true, null and undefined values will pass validation (default: `false`)
+  - `throwErrors?: boolean`: If set to true, a TypeError will be thrown instead of returning the validation message in
+    the result object (default: `false`)
+
+#### Returns
+
+An instance of `ValidatorInterface`
+
+When calling the `validate` method on the returned instance, the following object is returned:
+
+- An object containing the result of the validation.
+  - `value: any`: The value that was validated.
+  - `valid: boolean`: Whether the value passed validation.
+  - `message?: string`: The validation message. (`null` if `valid` is `true`)
+
+```typescript
+import { Validators } from '@electra/utility';
+
+const validator = Validators.regex(
+  /^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/, 
+  "YYYY-MM-DD"
+);
+
+const { value, valid, message } = validator.validate("2019-01-31");
+
+// value = "2019-01-31"
 // valid = true
 // message = null
 ```
