@@ -9,6 +9,7 @@ import { AllValidator } from "./Validator/All/AllValidator";
 import { AnyValidator } from "./Validator/Any/AnyValidator";
 import { MaxLengthValidator } from "./Validator/MaxLength/MaxLengthValidator";
 import { MinLengthValidator } from "./Validator/MinLength/MinLengthValidator";
+import { EnumValueValidator } from "./Validator/EnumValue/EnumValueValidator";
 
 describe("Validators", () => {
   
@@ -40,6 +41,21 @@ describe("Validators", () => {
     
     it("returns a BooleanValidator instance", () => {
       expect(Validators.boolean()).toBeInstanceOf(BooleanValidator);
+    });
+    
+  });
+  
+  describe("enumValue", () => {
+    
+    it("returns a EnumValueValidator instance", () => {
+      
+      enum TestEnum
+      {
+        FOO = "foo",
+        BAR = "bar"
+      }
+      
+      expect(Validators.enumValue(TestEnum)).toBeInstanceOf(EnumValueValidator);
     });
     
   });
