@@ -65,6 +65,7 @@ Table of contents:
     - [array](#validatorsarray)
     - [boolean](#validatorsboolean)
     - [enumValue](#validatorsenumvalue)
+    - [integer](#validatorsinteger)
     - [maxLength](#validatorsmaxlength)
     - [minLength](#validatorsminlength)
     - [number](#validatorsnumber)
@@ -757,6 +758,40 @@ const validator = Validators.enumValue(ExampleEnum);
 const { value, valid, message } = validator.validate("foo");
 
 // value = "foo"
+// valid = true
+// message = null
+```
+
+### Validators.integer
+
+Validate that a value is an integer.
+
+#### Parameters
+
+- `options?: ValidatorOptions`: An object containing options for the validation process.
+  - `optional?: boolean`: If set to true, null and undefined values will pass validation (default: `false`)
+  - `throwErrors?: boolean`: If set to true, a TypeError will be thrown instead of returning the validation message in
+    the result object (default: `false`)
+
+#### Returns
+
+An instance of `ValidatorInterface`
+
+When calling the `validate` method on the returned instance, the following object is returned:
+
+- An object containing the result of the validation.
+  - `value: any`: The value that was validated.
+  - `valid: boolean`: Whether the value passed validation.
+  - `message?: string`: The validation message. (`null` if `valid` is `true`)
+
+```typescript
+import { Validators } from '@electra/utility';
+
+const validator = Validators.integer();
+
+const { value, valid, message } = validator.validate(123);
+
+// value = 123
 // valid = true
 // message = null
 ```
