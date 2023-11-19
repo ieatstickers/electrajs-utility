@@ -63,6 +63,7 @@ Table of contents:
     - [any](#validatorsany)
     - [array](#validatorsarray)
     - [boolean](#validatorsboolean)
+    - [enumValue](#validatorsenumvalue)
     - [maxLength](#validatorsmaxlength)
     - [minLength](#validatorsminlength)
     - [number](#validatorsnumber)
@@ -697,6 +698,46 @@ const { value: stringValue, valid: isStringValid, message } = validator.validate
 // stringValue = "test"
 // isStringValid = false
 // message = "Value must be a boolean - string provided"
+```
+
+### Validators.enumValue
+
+Validate that a value is a valid enum value from a specified enum.
+
+#### Parameters
+
+- `enumClass: { [key: string]: string | number }`: The enum class to check the value against.
+- `options?: ValidatorOptions`: An object containing options for the validation process.
+  - `optional?: boolean`: If set to true, null and undefined values will pass validation (default: `false`)
+  - `throwErrors?: boolean`: If set to true, a TypeError will be thrown instead of returning the validation message in
+    the result object (default: `false`)
+
+#### Returns
+
+An instance of `ValidatorInterface`
+
+When calling the `validate` method on the returned instance, the following object is returned:
+
+- An object containing the result of the validation.
+  - `value: any`: The value that was validated.
+  - `valid: boolean`: Whether the value passed validation.
+  - `message?: string`: The validation message. (`null` if `valid` is `true`)
+
+```typescript
+import { Validators } from '@electra/utility';
+
+enum ExampleEnum {
+  FOO = 'foo',
+  BAR = 'bar'
+}
+
+const validator = Validators.enumValue(ExampleEnum);
+
+const { value, valid, message } = validator.validate("foo");
+
+// value = "foo"
+// valid = true
+// message = null
 ```
 
 ### Validators.maxLength

@@ -6,6 +6,9 @@ export declare class Validators {
     static any(validators: ValidatorInterface[], options?: ValidatorOptions): ValidatorInterface;
     static array(options?: ValidatorOptions): ValidatorInterface;
     static boolean(options?: ValidatorOptions): ValidatorInterface;
+    static enumValue(enumClass: {
+        [key: string]: string | number;
+    }, options?: ValidatorOptions): ValidatorInterface;
     static maxLength(maxLength: number, options?: ValidatorOptions): ValidatorInterface;
     static minLength(minLength: number, options?: ValidatorOptions): ValidatorInterface;
     static number(options?: ValidatorOptions): ValidatorInterface;
