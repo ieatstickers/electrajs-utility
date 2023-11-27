@@ -11,6 +11,30 @@ enum TestEnum
 
 describe("EnumValueValidator", () => {
   
+  describe("constructor", () => {
+    
+    it("throws error when given an invalid enum", () => {
+      
+      const invalidEnums = [
+        null,
+        undefined,
+        123,
+        "test",
+        false,
+        () => { console.log("test"); }
+      ];
+      
+      for (const invalidEnum of invalidEnums)
+      {
+        const expectation = expect(() => new EnumValueValidator(invalidEnum as any));
+        expectation.toThrow(TypeError);
+        expectation.toThrow("EnumValueValidator requires a valid enum");
+      }
+      
+    });
+    
+  });
+  
   describe("validate", () => {
     
     it("returns correct response when validating a valid enum value", () => {
