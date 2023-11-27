@@ -11,7 +11,7 @@ export class RegexValidator extends AbstractValidator
   public constructor(pattern: RegExp, expectedFormat: string, options?: ValidatorOptions)
   {
     super(options);
-    this.pattern = pattern instanceof RegExp ? pattern : new RegExp(pattern);
+    this.pattern = pattern;
     this.expectedFormat = expectedFormat;
   }
   
