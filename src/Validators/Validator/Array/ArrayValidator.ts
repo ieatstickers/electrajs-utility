@@ -38,7 +38,7 @@ export class ArrayValidator extends AbstractValidator
           return this.handleResult({
             value: value,
             valid: false,
-            message: `Array item validation failed. ${message}`
+            message: `Array item failed validation. ${message}`
           });
         }
       }

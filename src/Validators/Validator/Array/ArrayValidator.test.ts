@@ -119,7 +119,7 @@ describe("ArrayValidator", () => {
       const { value, valid, message } = validator.validate([ 1, 2, 3, "test" ]);
       expect(value).toEqual([ 1, 2, 3, "test" ]);
       expect(valid).toBe(false);
-      expect(message).toBe("Array item validation failed. Value must be an integer - string provided");
+      expect(message).toBe("Array item failed validation. Value must be an integer - string provided");
       
     });
     
