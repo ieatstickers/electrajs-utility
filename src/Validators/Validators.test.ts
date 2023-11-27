@@ -100,8 +100,12 @@ describe("Validators", () => {
   
   describe("object", () => {
     
-    it("returns an ObjectValidator instance", () => {
+    it("returns an ObjectValidator instance when no item validator is provided", () => {
       expect(Validators.object()).toBeInstanceOf(ObjectValidator);
+    });
+    
+    it("returns an ObjectValidator instance when item validator is provided", () => {
+      expect(Validators.object(Validators.string())).toBeInstanceOf(ObjectValidator);
     });
     
   });

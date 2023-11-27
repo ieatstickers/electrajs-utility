@@ -14,6 +14,7 @@ export declare class Validators {
     static maxLength(maxLength: number, options?: ValidatorOptions): ValidatorInterface;
     static minLength(minLength: number, options?: ValidatorOptions): ValidatorInterface;
     static number(options?: ValidatorOptions): ValidatorInterface;
+    static object(itemValidator: ValidatorInterface, options?: ValidatorOptions): ValidatorInterface;
     static object(options?: ValidatorOptions): ValidatorInterface;
     static regex(pattern: RegExp, expectedFormat: string, options?: ValidatorOptions): ValidatorInterface;
     static schema(schema: Schema, options?: ValidatorOptions): ValidatorInterface;

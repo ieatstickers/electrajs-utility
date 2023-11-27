@@ -1,4 +1,5 @@
 import { ObjectValidator } from "./ObjectValidator";
+import { IntegerValidator } from "../Integer/IntegerValidator";
 
 describe("ObjectValidator", () => {
   
@@ -70,7 +71,7 @@ describe("ObjectValidator", () => {
       
       for (const [key, value] of Object.entries(values))
       {
-        const validator = new ObjectValidator({ optional: false });
+        const validator = new ObjectValidator(null, { optional: false });
         const { value: validatorValue, valid: isValid, message: validatorMessage } = validator.validate(value);
         expect(validatorValue).toBe(value);
         expect(isValid).toBe(false);
@@ -83,7 +84,7 @@ describe("ObjectValidator", () => {
       
       for (const value of values)
       {
-        const validator = new ObjectValidator({ optional: true });
+        const validator = new ObjectValidator(null, { optional: true });
         const { value: validatorValue, valid: isValid, message: validatorMessage } = validator.validate(value);
         expect(validatorValue).toBe(value);
         expect(isValid).toBe(true);
@@ -105,11 +106,21 @@ describe("ObjectValidator", () => {
       for (const value of values)
       {
         const { message } = (new ObjectValidator()).validate(value);
-        const validator = new ObjectValidator({ throwErrors: true });
+        const validator = new ObjectValidator(null, { throwErrors: true });
         const expectation = expect(() => validator.validate(value));
         expectation.toThrow(TypeError);
         expectation.toThrow(message);
       }
+    });
+    
+    it("returns the correct response when given an invalid object value", () => {
+      
+      const validator = new ObjectValidator((new IntegerValidator()));
+      const { value, valid, message } = validator.validate({ one: 1, two: 2, three: 3, four: "test" });
+      expect(value).toEqual({ one: 1, two: 2, three: 3, four: "test" });
+      expect(valid).toBe(false);
+      expect(message).toBe(`Object value with key "four" failed validation. Value must be an integer - string provided`);
+      
     });
     
   });

@@ -71,10 +71,19 @@ export class Validators
   {
     return new NumberValidator(options);
   }
-
+  
+  public static object(itemValidator: ValidatorInterface, options?: ValidatorOptions): ValidatorInterface;
   public static object(options?: ValidatorOptions): ValidatorInterface
+  public static object(...args: Array<any>): ValidatorInterface
   {
-    return new ObjectValidator(options);
+    const [ firstArg, options ] = args;
+    
+    if (firstArg instanceof AbstractValidator)
+    {
+      return new ObjectValidator(firstArg, options);
+    }
+    
+    return new ObjectValidator(undefined, options);
   }
 
   public static regex(pattern: RegExp, expectedFormat: string, options?: ValidatorOptions): ValidatorInterface
