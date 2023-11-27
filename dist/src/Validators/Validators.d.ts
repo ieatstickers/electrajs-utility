@@ -4,6 +4,7 @@ import { Schema } from "./Validator/Schema/Type/Schema";
 export declare class Validators {
     static all(validators: ValidatorInterface[], options?: ValidatorOptions): ValidatorInterface;
     static any(validators: ValidatorInterface[], options?: ValidatorOptions): ValidatorInterface;
+    static array(itemValidator: ValidatorInterface, options?: ValidatorOptions): ValidatorInterface;
     static array(options?: ValidatorOptions): ValidatorInterface;
     static boolean(options?: ValidatorOptions): ValidatorInterface;
     static enumValue(enumClass: {
