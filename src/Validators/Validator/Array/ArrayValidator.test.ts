@@ -1,4 +1,5 @@
 import { ArrayValidator } from "./ArrayValidator";
+import { IntegerValidator } from "../Integer/IntegerValidator";
 
 describe("ArrayValidator", () => {
   
@@ -70,7 +71,7 @@ describe("ArrayValidator", () => {
       
       for (const [key, value] of Object.entries(values))
       {
-        const validator = new ArrayValidator({ optional: false });
+        const validator = new ArrayValidator(null, { optional: false });
         const { value: validatorValue, valid: isValid, message: validatorMessage } = validator.validate(value);
         expect(validatorValue).toBe(value);
         expect(isValid).toBe(false);
@@ -83,7 +84,7 @@ describe("ArrayValidator", () => {
       
       for (const value of values)
       {
-        const validator = new ArrayValidator({ optional: true });
+        const validator = new ArrayValidator(null, { optional: true });
         const { value: validatorValue, valid: isValid, message: validatorMessage } = validator.validate(value);
         expect(validatorValue).toBe(value);
         expect(isValid).toBe(true);
@@ -105,11 +106,21 @@ describe("ArrayValidator", () => {
       for (const value of values)
       {
         const { message } = (new ArrayValidator()).validate(value);
-        const validator = new ArrayValidator({ throwErrors: true });
+        const validator = new ArrayValidator(null, { throwErrors: true });
         const expectation = expect(() => validator.validate(value));
         expectation.toThrow(TypeError);
         expectation.toThrow(message);
       }
+    });
+    
+    it("returns the correct response when given an invalid array item", () => {
+      
+      const validator = new ArrayValidator((new IntegerValidator()));
+      const { value, valid, message } = validator.validate([ 1, 2, 3, "test" ]);
+      expect(value).toEqual([ 1, 2, 3, "test" ]);
+      expect(valid).toBe(false);
+      expect(message).toBe("Array item validation failed. Value must be an integer - string provided");
+      
     });
     
   });

@@ -33,8 +33,12 @@ describe("Validators", () => {
   
   describe("array", () => {
     
-    it("returns an ArrayValidator instance", () => {
+    it("returns an ArrayValidator instance when no item validator is provided", () => {
       expect(Validators.array()).toBeInstanceOf(ArrayValidator);
+    });
+    
+    it("returns an ArrayValidator instance when item validator is provided", () => {
+      expect(Validators.array(Validators.string())).toBeInstanceOf(ArrayValidator);
     });
     
   });
@@ -104,7 +108,11 @@ describe("Validators", () => {
   
   describe("regex", () => {
     
-    it("returns an RegexValidator instance", () => {
+    it("returns a RegexValidator instance when given a regex instance", () => {
+      expect(Validators.regex(/test/, 'test')).toBeInstanceOf(RegexValidator);
+    });
+    
+    it("returns a RegexValidator instance when given a string", () => {
       expect(Validators.regex(/test/, 'test')).toBeInstanceOf(RegexValidator);
     });
     

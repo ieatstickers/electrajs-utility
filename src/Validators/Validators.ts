@@ -14,6 +14,7 @@ import { MaxLengthValidator } from "./Validator/MaxLength/MaxLengthValidator";
 import { EnumValueValidator } from "./Validator/EnumValue/EnumValueValidator";
 import { IntegerValidator } from "./Validator/Integer/IntegerValidator";
 import { RegexValidator } from "./Validator/Regex/RegexValidator";
+import { AbstractValidator } from "./Validator/AbstractValidator";
 
 export class Validators
 {
@@ -27,9 +28,18 @@ export class Validators
     return new AnyValidator(validators, options);
   }
   
-  public static array(options?: ValidatorOptions): ValidatorInterface
+  public static array(itemValidator: ValidatorInterface, options?: ValidatorOptions): ValidatorInterface;
+  public static array(options?: ValidatorOptions): ValidatorInterface;
+  public static array(...args: Array<any>): ValidatorInterface
   {
-    return new ArrayValidator(options);
+    const [ firstArg, options ] = args;
+    
+    if (firstArg instanceof AbstractValidator)
+    {
+      return new ArrayValidator(firstArg, options);
+    }
+    
+    return new ArrayValidator(undefined, firstArg);
   }
 
   public static boolean(options?: ValidatorOptions): ValidatorInterface
