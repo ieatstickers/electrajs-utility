@@ -26,10 +26,10 @@ module.exports = [
   {
     ...baseConfig,
     // Output
-    output:  {
+    output: {
       filename: "[name].min.cjs",
       path: `${__dirname}/dist`,
-      library:      {
+      library: {
         type: "commonjs2"
       }
     }
@@ -38,10 +38,10 @@ module.exports = [
   {
     ...baseConfig,
     // Output
-    output:  {
+    output: {
       filename: "[name].min.mjs",
       path: `${__dirname}/dist`,
-      library:      {
+      library: {
         type: "module"
       }
     },
