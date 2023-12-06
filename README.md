@@ -652,10 +652,19 @@ Validate that a value is an array.
 
 #### Parameters
 
+The `Validators.array` method has two overload signatures:
+
+One optional `options` parameter:
+
 - `options?: ValidatorOptions`: An object containing options for the validation process.
     - `optional?: boolean`: If set to true, null and undefined values will pass validation (default: `false`)
     - `throwErrors?: boolean`: If set to true, a TypeError will be thrown instead of returning the validation message in
       the result object (default: `false`)
+
+Or a required `itemValidator` parameter, with an optional `options` parameter:
+
+- `itemValidator: ValidatorInterface`: A validator to validate each item in the array against.
+- `options?: ValidatorOptions`: As above.
 
 #### Returns
 
@@ -907,10 +916,19 @@ Validate that a value is an object.
 
 #### Parameters
 
+The `Validators.object` method has two overload signatures:
+
+One optional `options` parameter:
+
 - `options?: ValidatorOptions`: An object containing options for the validation process.
     - `optional?: boolean`: If set to true, null and undefined values will pass validation (default: `false`)
     - `throwErrors?: boolean`: If set to true, a TypeError will be thrown instead of returning the validation message in
       the result object (default: `false`)
+
+Or a required `itemValidator` parameter, with an optional `options` parameter:
+
+- `itemValidator: ValidatorInterface`: A validator to validate each item in the object against.
+- `options?: ValidatorOptions`: As above.
 
 #### Returns
 
