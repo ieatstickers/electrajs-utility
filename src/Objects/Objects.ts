@@ -1,9 +1,36 @@
 import { HydrateModeEnum } from "./Enum/HydrateModeEnum";
 import { Arrays } from "../Arrays/Arrays";
 import { HydrateOptions } from "./Type/HydrateOptions";
+import { MergeResult } from "./Type/MergeResult";
 
 export class Objects
 {
+  public static merge<T extends object[]>(...objects: T): MergeResult<T>
+  {
+    return objects.reduce((acc, source) => {
+      
+      for (const key in source)
+      {
+        const sourceValue = source[key];
+        
+        if (Array.isArray(sourceValue))
+        {
+          acc[key] = Arrays.clone(sourceValue);
+        }
+        else if (typeof sourceValue === "object" && sourceValue !== null)
+        {
+          acc[key] = this.merge(acc[key] || {}, Objects.clone(sourceValue));
+        }
+        else
+        {
+          acc[key] = sourceValue;
+        }
+      }
+      
+      return acc;
+    }, {} as any);
+  }
+  
   public static clone<T extends Record<string | number, any>>(obj: T): T
   {
     if(!obj || typeof obj !== 'object' || Array.isArray(obj))

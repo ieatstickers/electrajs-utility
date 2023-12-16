@@ -248,4 +248,39 @@ describe("Objects", () => {
     
   });
   
+  describe("merge", () => {
+  
+    it("correctly deep merges an object", () => {
+      const deepNestedObj = { deepKey: "deepValue" };
+      const obj1 = { foo: "bar", bar: "foo", test: 123, obj: { someKey: "someValue", deepNestedObj: deepNestedObj } };
+      const obj2 = { bar: "baz", test: 456, arr: [ 1, 2, 3 ], obj: { someKey: "someOtherValue" } };
+      const obj3 = { third: true };
+      
+      const merged = Objects.merge(
+        obj1,
+        obj2,
+        obj3
+      );
+      
+      expect(merged).toEqual({
+        foo: "bar",
+        bar: "baz",
+        test: 456,
+        arr: [ 1, 2, 3 ],
+        obj: {
+          someKey: "someOtherValue",
+          deepNestedObj: {
+            deepKey: "deepValue"
+          }
+        },
+        third: true
+      });
+      expect(merged).not.toBe(obj1);
+      expect(merged).not.toBe(obj2);
+      expect(merged.obj.deepNestedObj.deepKey).not.toBe(deepNestedObj);
+      
+    });
+    
+  });
+  
 });

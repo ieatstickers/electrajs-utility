@@ -32,20 +32,21 @@ const clone = Objects.clone(src);
 Table of contents:
 
 - [Arrays](#arrays)
-    - [clone](#arraysclone)
-    - [randomItem](#arraysrandomitem)
+  - [clone](#arraysclone)
+  - [randomItem](#arraysrandomitem)
 - [Numbers](#numbers)
-    - [random](#numbersrandom)
+  - [random](#numbersrandom)
 - [Objects](#objects)
-    - [clone](#objectsclone)
-    - [hydrate](#objectshydrate)
-    - [getByKeyPath](#objectsgetbykeypath)
-    - [setByKeyPath](#objectssetbykeypath)
+  - [clone](#objectsclone)
+  - [hydrate](#objectshydrate)
+  - [merge](#objectsmerge)
+  - [getByKeyPath](#objectsgetbykeypath)
+  - [setByKeyPath](#objectssetbykeypath)
 - [Promises](#promises)
-    - [all](#promisesall)
+  - [all](#promisesall)
 - [Strings](#strings)
-    - [initialCaps](#stringsinitialcaps)
-    - [random](#stringsrandom)
+  - [initialCaps](#stringsinitialcaps)
+  - [random](#stringsrandom)
 - [Types](#types)
   - [isString](#typesisstring)
   - [isBoolean](#typesisboolean)
@@ -60,19 +61,19 @@ Table of contents:
   - [isEnum](#typesisenum)
   - [isEnumValue](#typesisenumvalue)
 - [Validators](#validators)
-    - [all](#validatorsall)
-    - [any](#validatorsany)
-    - [array](#validatorsarray)
-    - [boolean](#validatorsboolean)
-    - [enumValue](#validatorsenumvalue)
-    - [integer](#validatorsinteger)
-    - [maxLength](#validatorsmaxlength)
-    - [minLength](#validatorsminlength)
-    - [number](#validatorsnumber)
-    - [object](#validatorsobject)
-    - [regex](#validatorsregex)
-    - [schema](#validatorsschema)
-    - [string](#validatorsstring)
+  - [all](#validatorsall)
+  - [any](#validatorsany)
+  - [array](#validatorsarray)
+  - [boolean](#validatorsboolean)
+  - [enumValue](#validatorsenumvalue)
+  - [integer](#validatorsinteger)
+  - [maxLength](#validatorsmaxlength)
+  - [minLength](#validatorsminlength)
+  - [number](#validatorsnumber)
+  - [object](#validatorsobject)
+  - [regex](#validatorsregex)
+  - [schema](#validatorsschema)
+  - [string](#validatorsstring)
 
 ## Arrays
 
@@ -198,6 +199,31 @@ const hydrated = Objects.hydrate(
   }
 );
 // hydrated = { a: 1, b: 3, c: 4 }  
+```
+
+### Objects.merge
+
+Deep merge any number of objects together. The objects are merged in order, so if a property exists in multiple objects, the value from the last object will be used.
+
+#### Parameters
+
+- `...objects: Array<Object>`: Any number of objects to merge together.
+
+#### Returns
+
+- The merged object.
+
+#### Example
+
+```typescript
+import { Objects } from '@electra/utility';
+
+const obj1 = { a: 1, b: 2, c: { d: 3, e: 4, f: 5 } };
+const obj2 = { b: 6, c: { d: 7, e: 8 } };
+
+const merged = Objects.merge(obj1, obj2);
+
+// merged = { a: 1, b: 6, c: { d: 7, e: 8, f: 5 } }
 ```
 
 ### Objects.getByKeyPath
